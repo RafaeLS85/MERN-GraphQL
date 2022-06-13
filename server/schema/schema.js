@@ -5,7 +5,8 @@ import {
   GraphQLString,
   GraphQLList,
 } from "graphql";
-import { projects, clients } from "../sampleData.js";
+import Client from "../models/Client.js";
+import Project from "../models/Project.js";
 
 // client type
 const ClientType = new GraphQLObjectType({
@@ -29,7 +30,7 @@ const ProjectType = new GraphQLObjectType({
     client: {
       type: ClientType,
       resolve(parent, args) {
-        return clients.find((client) => client.id === parent.clientId);
+        return Client.findById(parent.clientId);
       },
     },
   }),
@@ -40,7 +41,9 @@ const rootQuery = new GraphQLObjectType({
   fields: {
     clients: {
       type: new GraphQLList(ClientType),
-      resolve: () => clients,
+      resolve(parent, args) {
+        return Client.find();
+      }
     },
     client: {
       type: ClientType,
@@ -48,12 +51,14 @@ const rootQuery = new GraphQLObjectType({
         id: { type: GraphQLID },
       },
       resolve(parent, args) {
-        return clients.find((client) => client.id === args.id);
+        return Client.findById(args.id);
       },
     },
     projects: {
       type: new GraphQLList(ProjectType),
-      resolve: () => projects,
+      resolve(parent, args){
+       return Project.find();
+      }  
     },
     project: {
       type: ProjectType,
@@ -61,7 +66,7 @@ const rootQuery = new GraphQLObjectType({
         id: { type: GraphQLID },
       },
       resolve(parent, args) {
-        return projects.find((project) => project.id === args.id);
+        return Project.findById(args.id);
       },
     },
   },
@@ -70,22 +75,5 @@ const rootQuery = new GraphQLObjectType({
 const schema = new GraphQLSchema({
   query: rootQuery,
 });
-
-// query example:
-// {
-//     client(id: "1"){
-//       name,
-//       email,
-//       phone
-//     }
-// }
-
-// {
-//     clients {
-//       name,
-//       email,
-//       phone
-//     }
-// }
 
 export default schema;
