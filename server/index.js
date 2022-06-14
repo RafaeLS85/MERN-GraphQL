@@ -4,6 +4,8 @@ import * as dotenv from 'dotenv';
 import schema from './schema/schema.js';
 import connectDB from './config/db.js';
 
+import cors from 'cors'
+
 dotenv.config();
 
 const root = {
@@ -16,6 +18,8 @@ const port = process.env.PORT || 4000;
 const app = express();
 
 connectDB();
+
+app.use(cors())
 
 app.use('/graphql', graphqlHTTP({
   schema,

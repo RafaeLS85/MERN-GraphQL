@@ -4,6 +4,11 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import Home from './pages/Home';
 import Project from './pages/Project';
 import NotFound from './pages/NotFound';
+import { Clients } from './components/Clients';
+import AddClientModal from './components/AddClientModal';
+
+
+
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -25,7 +30,7 @@ const cache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-  uri: 'http://localhost:5000/graphql',
+  uri: 'http://localhost:3200/graphql',
   cache,
 });
 
@@ -36,11 +41,13 @@ function App() {
         <Router>
           <Header />
           <div className='container'>
-            <Routes>
+            <AddClientModal />
+            <Clients />
+            {/* <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/projects/:id' element={<Project />} />
               <Route path='*' element={<NotFound />} />
-            </Routes>
+            </Routes> */}
           </div>
         </Router>
       </ApolloProvider>
