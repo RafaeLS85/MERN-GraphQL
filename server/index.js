@@ -14,7 +14,7 @@ const root = {
   },
 };
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3200;
 const app = express();
 
 connectDB();

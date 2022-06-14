@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound';
 import { Clients } from './components/Clients';
 import AddClientModal from './components/AddClientModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Projects } from './components/Projects';
 
 
 
@@ -43,6 +44,7 @@ function App() {
           <Header />
           <div className='container'>
             <AddClientModal />
+            <Projects />
             <Clients />
             {/* <Routes>
               <Route path='/' element={<Home />} />
