@@ -6,6 +6,7 @@ import Project from './pages/Project';
 import NotFound from './pages/NotFound';
 import { Clients } from './components/Clients';
 import AddClientModal from './components/AddClientModal';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
