@@ -12,7 +12,7 @@ export const Projects = () => {
   return (
     <>
       {data.projects.length ? (
-        <div className="row">
+        <div className="row mt-4">
           {data.projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
